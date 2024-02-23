@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 60px;
+}
+
+.goBack-button-row {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  bottom: 60px;
+  justify-content: center;
+  align-items: center;
+}

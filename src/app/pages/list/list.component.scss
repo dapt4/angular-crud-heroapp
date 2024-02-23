@@ -1,0 +1,31 @@
+section {
+  display: flex;
+  width: 100%;
+  padding: 60px 0px;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  .nothingToShow {
+    display: flex;
+    width: 90%;
+    max-width: 700px;
+    margin: 40px auto;
+    font-size: 1.9em;
+    justify-content: center;
+    align-items: center;
+    .cross {
+      transform: scale(1.5);
+      margin-right: 10px;
+    }
+  }
+}
+
+.newButton-container {
+  width: fit-content;
+  height: fit-content;
+  .newButton {
+    position: absolute;
+    right: 7%;
+    bottom: 7%;
+  }
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": 659,
+    "name": "Thor",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/659-thor.jpg"
+  },
+  {
+    "id": 346,
+    "name": "Iron Man",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/346-iron-man.jpg"
+  },
+  {
+    "id": 149,
+    "name": "Captain America",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/149-captain-america.jpg"
+  },
+  {
+    "id": 313,
+    "name": "Hawkeye",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/313-hawkeye.jpg"
+  },
+  {
+    "id": 107,
+    "name": "Black Widow",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/107-black-widow.jpg"
+  },
+  {
+    "id": 332,
+    "name": "Hulk",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/332-hulk.jpg"
+  },
+  {
+    "id": 226,
+    "name": "Doctor Strange",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/226-doctor-strange.jpg"
+  },
+  {
+    "id": 697,
+    "name": "Vision",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/697-vision.jpg"
+  },
+  {
+    "id": 579,
+    "name": "Scarlet Witch",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/579-scarlet-witch.jpg"
+  }
+]

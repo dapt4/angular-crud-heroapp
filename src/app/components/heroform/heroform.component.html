@@ -1,0 +1,47 @@
+<mat-card class="card">
+  <mat-card-header class="card-header">
+    <mat-card-title>
+      <span *ngIf="id; else elseBlock">Edit hero</span>
+      <ng-template #elseBlock><span>New hero</span></ng-template>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <form [formGroup]="heroForm" class="hero-form">
+      <mat-form-field
+        class="input-full-width"
+        [class.mat-form-field-invalid]="isInvalid('name')"
+      >
+        <mat-label>Hero name</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Iron man"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <mat-form-field
+        class="input-full-width"
+        [class.mat-form-field-invalid]="isInvalid('image')"
+      >
+        <mat-label>Hero image url</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="https://www.example.com/image.jpg"
+          formControlName="image"
+        />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions class="card-actions">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="save()"
+      [disabled]="isInvalid('name') || isInvalid('image')"
+    >
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+  </mat-card-actions>
+</mat-card>
