@@ -9,6 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MydialogComponent } from '../../components/mydialog/mydialog.component';
+import { DialogData } from '../../types/DialogData';
 
 @Component({
   selector: 'app-list',
@@ -21,6 +24,7 @@ import { RouterModule } from '@angular/router';
     MatDividerModule,
     MatButtonModule,
     RouterModule,
+    MydialogComponent,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -32,8 +36,18 @@ export class ListComponent {
 
   constructor(
     private service: GetdataService,
-    private delService: DeleteheroService
+    private delService: DeleteheroService,
+    public dialog: MatDialog
   ) {}
+
+  openDialog(id: number) {
+    const dialogR = this.dialog.open(MydialogComponent, { data: { id: id } });
+    dialogR.afterClosed().subscribe((data: DialogData) => {
+      if (data) {
+        this.deleteOne(data.id);
+      }
+    });
+  }
 
   find(value: string) {
     this.findValue = value;

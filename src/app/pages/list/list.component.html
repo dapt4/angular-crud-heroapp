@@ -1,7 +1,7 @@
 <section>
   <app-finder (valueEvent)="find($event)" />
   <div *ngIf="matchState.length > 0; else elseBlock">
-    <app-herolist (deleteHeroEvent)="deleteOne($event)" [herolist]="matchState" />
+    <app-herolist (deleteHeroEvent)="openDialog($event)" [herolist]="matchState" />
   </div>
   <ng-template #elseBlock>
     <div class="nothingToShow">
@@ -22,3 +22,5 @@
       <mat-icon>add</mat-icon>
   </button>
 </div>
+
+
