@@ -16,7 +16,6 @@ export class HeroInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('paso por interceptor')
     return next.handle(req).pipe(catchError(this.handleError));
   }
 

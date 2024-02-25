@@ -14,6 +14,7 @@ import { MydialogComponent } from '../../components/mydialog/mydialog.component'
 import { DialogData } from '../../types/DialogData';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarConfig } from '../../constants/SnackBarConfig';
+import { debounce } from 'lodash';
 
 
 @Component({
@@ -57,7 +58,9 @@ export class ListComponent {
     });
   }
 
-  find(value: string) {
+  find = debounce((value:string) => this.filter(value), 400)
+
+  filter(value: string): any{
     this.findValue = value;
     this.matchState = this.heroState.filter((hero) => {
       return hero.name.toLowerCase().includes(value);
