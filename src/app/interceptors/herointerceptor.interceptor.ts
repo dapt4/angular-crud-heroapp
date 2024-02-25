@@ -5,9 +5,9 @@ import {
   HttpHandler,
   HttpRequest,
   HttpErrorResponse,
+  HttpHeaders,
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-
 
 @Injectable()
 export class HeroInterceptor implements HttpInterceptor {
@@ -16,7 +16,12 @@ export class HeroInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError(this.handleError));
+    // for add tokens and more
+    const headers = new HttpHeaders({
+      accept: 'application/vnd.github+json',
+    });
+    const authReq = req.clone({ headers });
+    return next.handle(authReq).pipe(catchError(this.handleError));
   }
 
   handleError(error: HttpErrorResponse) {
