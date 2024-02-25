@@ -8,15 +8,26 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-herolist',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule, RouterModule],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    CommonModule,
+    RouterModule,
+  ],
   templateUrl: './herolist.component.html',
   styleUrl: './herolist.component.scss',
 })
 export class HerolistComponent {
   @Input() herolist: SuperheroT[] = [];
-  @Output() deleteHeroEvent = new EventEmitter()
+  @Output() deleteHeroEvent = new EventEmitter();
 
-  deleteHero(id: number){
-    this.deleteHeroEvent.emit(id)
+  deleteHero(id: number) {
+    this.deleteHeroEvent.emit(id);
+  }
+
+  upper(name: string): string {
+    const charArr: string[] = name.split('');
+    charArr[0] = charArr[0].toUpperCase();
+    return charArr.join('');
   }
 }

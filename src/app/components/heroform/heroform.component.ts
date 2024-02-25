@@ -17,8 +17,10 @@ import { SuperheroForm } from '../../types/SuperheroForm';
 import { GetoneService } from '../../services/getone.service';
 import { NewheroService } from '../../services/newhero.service';
 import { SuperheroT } from '../../types/SuperheroT';
-import { SuperheroData } from '../../types/SuperheroData'
+import { SuperheroData } from '../../types/SuperheroData';
 import { EditheroService } from '../../services/edithero.service';
+import { SnackBarConfig } from '../../constants/SnackBarConfig';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-heroform',
@@ -38,33 +40,34 @@ import { EditheroService } from '../../services/edithero.service';
 })
 export class HeroformComponent {
   id: string | null = '';
-  data: Object = {}
+  data: Object = {};
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private getOne: GetoneService,
     private newHero: NewheroService,
-    private edithero: EditheroService
+    private edithero: EditheroService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id){
+    if (this.id) {
       this.getOneHero();
     }
     if (history.state.name && history.state.image) {
-      this.heroForm.get('id')?.setValue(history.state.id)
-      this.heroForm.get('name')?.setValue(history.state.name)
-      this.heroForm.get('image')?.setValue(history.state.image)
+      this.heroForm.get('id')?.setValue(history.state.id);
+      this.heroForm.get('name')?.setValue(history.state.name);
+      this.heroForm.get('image')?.setValue(history.state.image);
     }
   }
 
   save() {
     if (this.id) {
-      this.edit()
+      this.edit();
     } else {
-      this.create()
+      this.create();
     }
     this.router.navigate(['/']);
   }
@@ -76,26 +79,36 @@ export class HeroformComponent {
   });
 
   isInvalid(param: string) {
-    return this.heroForm.get(param)?.invalid
+    return this.heroForm.get(param)?.invalid;
   }
 
   getOneHero() {
-    if (this.id){
-      this.getOne.one(this.id).subscribe((data: Object) => {
-        this.data = data
-      })
+    if (this.id) {
+      this.getOne.one(this.id).subscribe((data: Object) => (this.data = data));
     }
   }
 
   create() {
-    this.newHero.newHero(this.heroForm.value as SuperheroData)
-      .subscribe((res: SuperheroT) => console.log(res))
+    this.newHero
+      .newHero(this.heroForm.value as SuperheroData)
+      .subscribe((res: SuperheroT) => {
+        console.log(res);
+        this.openSnackBar('The hero was created');
+      });
   }
 
   edit() {
     if (this.id) {
-      this.edithero.edit(this.id, this.heroForm.value as SuperheroData)
-        .subscribe((data:SuperheroT) => console.log(data))
+      this.edithero
+        .edit(this.id, this.heroForm.value as SuperheroData)
+        .subscribe((data: SuperheroT) => {
+          console.log(data);
+          this.openSnackBar('The hero was edited');
+        });
     }
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', SnackBarConfig);
   }
 }

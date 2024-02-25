@@ -12,6 +12,9 @@ import { RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MydialogComponent } from '../../components/mydialog/mydialog.component';
 import { DialogData } from '../../types/DialogData';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarConfig } from '../../constants/SnackBarConfig';
+
 
 @Component({
   selector: 'app-list',
@@ -37,11 +40,16 @@ export class ListComponent {
   constructor(
     private service: GetdataService,
     private delService: DeleteheroService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   openDialog(id: number) {
-    const dialogR = this.dialog.open(MydialogComponent, { data: { id: id } });
+    const dialogR = this.dialog.open(MydialogComponent, {
+      data: { id: id },
+      height: '200px',
+      width: '300px',
+    });
     dialogR.afterClosed().subscribe((data: DialogData) => {
       if (data) {
         this.deleteOne(data.id);
@@ -59,7 +67,10 @@ export class ListComponent {
   deleteOne(id: number) {
     this.heroState = this.heroState.filter((hero) => hero.id !== id);
     this.find(this.findValue);
-    this.delService.del(id).subscribe((res: Object) => console.log(res));
+    this.delService.del(id).subscribe((res: Object) => {
+      console.log(res);
+      this.openSnackBar('the hero was deleted');
+    });
   }
 
   ngOnInit() {
@@ -67,5 +78,9 @@ export class ListComponent {
       this.heroState = data;
       this.matchState = data;
     });
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', SnackBarConfig);
   }
 }

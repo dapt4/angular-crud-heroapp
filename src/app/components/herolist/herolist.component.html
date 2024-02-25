@@ -6,7 +6,7 @@
     <mat-card class="hero" *ngFor="let hero of herolist">
       <mat-card-content class="hero-content">
         <img class="hero-content-img" src="{{ hero.image }}" />
-        <span class="hero-content-name"> {{ hero.name }} </span>
+        <span class="hero-content-name"> {{ upper(hero.name) }} </span>
         <div class="hero-content-buttons">
           <button mat-raised-button color="warn" (click)="deleteHero(hero.id)">Delete</button>
           <button mat-raised-button color="accent" [routerLink]="['edit', hero.id]" [state]="hero">Edit</button>
