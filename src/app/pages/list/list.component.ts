@@ -15,7 +15,7 @@ import { DialogData } from '../../types/DialogData';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarConfig } from '../../constants/SnackBarConfig';
 import { debounce } from 'lodash';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-list',
@@ -29,6 +29,7 @@ import { debounce } from 'lodash';
     MatButtonModule,
     RouterModule,
     MydialogComponent,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -37,6 +38,7 @@ export class ListComponent {
   heroState: SuperheroT[] = [];
   matchState: SuperheroT[] = [];
   findValue: string = '';
+  loading: boolean = true;
 
   constructor(
     private service: GetdataService,
@@ -58,9 +60,9 @@ export class ListComponent {
     });
   }
 
-  find = debounce((value:string) => this.filter(value), 400)
+  find = debounce((value: string) => this.filter(value), 400);
 
-  filter(value: string): any{
+  filter(value: string) {
     this.findValue = value;
     this.matchState = this.heroState.filter((hero) => {
       return hero.name.toLowerCase().includes(value);
@@ -80,6 +82,7 @@ export class ListComponent {
     this.service.getAll().subscribe((data: SuperheroT[]) => {
       this.heroState = data;
       this.matchState = data;
+      this.loading = false;
     });
   }
 

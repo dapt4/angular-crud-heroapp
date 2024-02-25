@@ -58,7 +58,7 @@ export class HeroformComponent {
     }
     if (history.state.name && history.state.image) {
       this.heroForm.get('id')?.setValue(history.state.id);
-      this.heroForm.get('name')?.setValue(history.state.name);
+      this.heroForm.get('name')?.setValue(history.state.name.toUpperCase());
       this.heroForm.get('image')?.setValue(history.state.image);
     }
   }

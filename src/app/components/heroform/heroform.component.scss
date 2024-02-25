@@ -3,7 +3,7 @@
   &-header {
     justify-content: center;
     padding: 20px 0px;
-    span{
+    span {
       font-size: 1.4em;
     }
   }
@@ -14,15 +14,12 @@
       width: 100%;
       .input-full-width {
         width: 100%;
-        .uppercase{
-          text-transform: uppercase;
-        }
       }
     }
   }
-  &-actions{
+  &-actions {
     justify-content: center;
-    button{
+    button {
       width: 50%;
     }
   }

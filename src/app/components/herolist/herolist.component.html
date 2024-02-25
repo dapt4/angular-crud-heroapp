@@ -8,8 +8,18 @@
         <img class="hero-content-img" src="{{ hero.image }}" />
         <span class="hero-content-name"> {{ upper(hero.name) }} </span>
         <div class="hero-content-buttons">
-          <button mat-raised-button color="warn" (click)="deleteHero(hero.id)">Delete</button>
-          <button mat-raised-button color="accent" [routerLink]="['edit', hero.id]" [state]="hero">Edit</button>
+          <button mat-raised-button color="warn" (click)="deleteHero(hero.id)">
+            <mat-icon class="hero-btn-icon" aria-label="delete">delete</mat-icon>
+            <span class="hero-span">
+              Delete
+            </span>
+          </button>
+          <button mat-raised-button color="accent" [routerLink]="['edit', hero.id]" [state]="hero">
+            <mat-icon class="hero-btn-icon" aria-label="edit">edit</mat-icon>
+            <span class="hero-span">
+              Edit
+            </span>
+          </button>
         </div>
       </mat-card-content>
     </mat-card>

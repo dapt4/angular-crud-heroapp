@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-herolist',
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     CommonModule,
     RouterModule,
+    MatIconModule,
   ],
   templateUrl: './herolist.component.html',
   styleUrl: './herolist.component.scss',

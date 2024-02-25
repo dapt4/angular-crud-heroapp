@@ -1,26 +1,28 @@
 <section>
   <app-finder (valueEvent)="find($event)" />
-  <div *ngIf="matchState.length > 0; else elseBlock">
-    <app-herolist (deleteHeroEvent)="openDialog($event)" [herolist]="matchState" />
+  <span *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </span>
+  <div *ngIf="matchState.length > 0">
+    <app-herolist
+      (deleteHeroEvent)="openDialog($event)"
+      [herolist]="matchState"
+    />
   </div>
-  <ng-template #elseBlock>
-    <div class="nothingToShow">
-      <mat-icon aria-label="cross" class="cross">clear</mat-icon>
-      Nothing to show
-    </div>
-  </ng-template>
+  <div *ngIf="matchState.length === 0 && !loading" class="nothingToShow">
+    <mat-icon aria-label="cross" class="cross">clear</mat-icon>
+    Nothing to show
+  </div>
 </section>
 
 <div class="newButton-container">
   <button
-      class="newButton"
-      mat-fab
-      color="primary"
-      aria-label="New Hero"
-      routerLink="/new"
-      >
-      <mat-icon>add</mat-icon>
+    class="newButton"
+    mat-fab
+    color="primary"
+    aria-label="New Hero"
+    routerLink="/new"
+  >
+    <mat-icon>add</mat-icon>
   </button>
 </div>
-
-
